@@ -10,7 +10,15 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Poppins', sans-serif; background-color: #f4f4f4; color: #333; scroll-behavior: smooth; }
     header { background: linear-gradient(to right, #4CAF50, #2e7d32); color: white; padding: 40px 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-    nav { display: flex; justify-content: center; flex-wrap: wrap; background-color: #3a3a3a; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+    nav { display: flex;
+    justify-content: center;
+    flex-direction: row; /* Add this line */
+    flex-wrap: wrap;     /* Optional: allow wrapping on small screens */
+    background-color: #3a3a3a;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000; }
     nav a { color: white; padding: 16px 24px; text-decoration: none; font-weight: 500; transition: background 0.3s ease; }
     nav a:hover { background-color: #4CAF50; }
     .hero { background-image: url('ump_building.jpg'); background-size: cover; background-position: center; height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; color: white; }
