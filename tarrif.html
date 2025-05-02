@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Umpohliew Guesthouse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background-color: #f4f4f4; color: #333; scroll-behavior: smooth; }
+    header { background: linear-gradient(to right, #4CAF50, #2e7d32); color: white; padding: 40px 20px; text-align: center; }
+    nav { display: flex; justify-content: center; flex-wrap: wrap; background-color: #3a3a3a; position: sticky; top: 0; z-index: 1000; }
+    nav a { color: white; padding: 16px 24px; text-decoration: none; font-weight: 500; transition: background 0.3s; }
+    nav a:hover { background-color: #4CAF50; }
+
+    .hero {
+      background-image: url('images/ump_building.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+    }
+
+    .hero-content h1 {
+      font-size: 2.5rem;
+    }
+
+    .content {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    /* New custom room style */
+    .custom-room {
+      background-color: #e9f5ee;
+      border-radius: 20px;
+      max-width: 700px;
+      margin: 40px auto;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .custom-room img {
+      width: 100%;
+      display: block;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .price-overlay {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(10, 75, 65, 0.9);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .image-wrapper {
+      position: relative;
+    }
+
+    .caption-text {
+      text-align: center;
+      padding: 20px;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .hero { height: 250px; }
+      .hero-content h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to Umpohliew Guesthouse</h1>
+    <p>Experience serenity in the heart of Sohra</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="#rooms">Rooms</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Relax. Explore. Stay with Us.</h1>
+    </div>
+  </section>
+
+  <section class="content">
+    <h2>Our Rooms</h2>
+    <p>Beautiful, peaceful spaces to make you feel at home.</p>
+  </section>
+  <div class="custom-room" id="rooms">
+    <div class="image-wrapper">
+      <a href="index.html#booking">
+        <img src="images/img1.jpg" alt="Common Area">
+      </a>
+      <div class="price-overlay">₹2,000 per night</div>
+    </div>
+    <div class="caption-text">Relax in our common areas.</div>
+  </div>
+  <div class="custom-room">
+    <div class="image-wrapper">
+      <a href="index.html#booking">
+        <img src="images/img1.jpg" alt="Common Area">
+      </a>
+      <div class="price-overlay">₹2,000 per night</div>
+    </div>
+    <div class="caption-text">Relax in our common areas.</div>
+  </div>
+  <div class="custom-room">
+    <div class="image-wrapper">
+      <a href="index.html#booking">
+        <img src="images/img1.jpg" alt="Common Area">
+      </a>
+      <div class="price-overlay">₹2,000 per night</div>
+    </div>
+    <div class="caption-text">Relax in our common areas.</div>
+  </div>
+  <div class="custom-room">
+    <div class="image-wrapper">
+      <a href="index.html#booking">
+        <img src="images/img1.jpg" alt="Common Area">
+      </a>
+      <div class="price-overlay">₹2,000 per night</div>
+    </div>
+    <div class="caption-text">Relax in our common areas.</div>
+</div>    
+  <section class="content" id="contact">
+    <h2>Contact Us</h2>
+    <p>Have questions or need more details? Reach out!</p>
+    <p><strong>Phone:</strong> <a href="tel:+91 708 528 80528">+91 708 528 80528</a></p>
+    <p><strong>Email:</strong> <a href="mailto:umpohliewguesthouse@gmail.com">umpohliewguesthouse@gmail.com</a></p>
+    <p><strong>Address:</strong> Main Road, Sohra, Meghalaya - 793108</p>
+    <p><strong>Location:</strong> <a href="https://g.page/r/CXPt3faHqSUKEBE/review" target="_blank">View on Google Maps</a></p>
+  </section>
+
+</body>
+</html>
