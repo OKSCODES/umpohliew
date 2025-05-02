@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Testimonials – Umpohliew Guesthouse</title>
+
+  <!-- Modular Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      serverTimestamp,
+      getDocs,
+      query,
+      orderBy
+    } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
+
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBjYpitXbWYVksSFPYxcJKjvxahdGUd5M8",
+      authDomain: "umpohliewguesthouse-bd81e.firebaseapp.com",
+      projectId: "umpohliewguesthouse-bd81e",
+      storageBucket: "umpohliewguesthouse-bd81e.firebasestorage.app",
+      messagingSenderId: "579183469693",
+      appId: "1:579183469693:web:5659816e5a0e4addc97d14",
+      measurementId: "G-DDL5PK9S8Z"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const testimonialsCol = collection(db, "testimonials");
+
+    // Submit testimonial
+    window.submitTestimonial = async function(e) {
+      e.preventDefault();
+      const t = document.getElementById("testimonial").value.trim();
+      const n = document.getElementById("name").value.trim();
+      const em = document.getElementById("email").value.trim();
+      if (!t || !n || !em) {
+        alert("Please fill in all fields.");
+        return;
+      }
+      try {
+        await addDoc(testimonialsCol, {
+          testimonial: t,
+          name: n,
+          email: em,
+          createdAt: serverTimestamp()
+        });
+        alert("Thank you for your testimonial!");
+        e.target.reset();
+        loadTestimonials();
+      } catch (err) {
+        console.error(err);
+        alert("There was an error. Please try again later.");
+      }
+    };
+
+    // Load testimonials
+    async function loadTestimonials() {
+      const container = document.getElementById("testimonialsContainer");
+      container.innerHTML = "";
+      try {
+        const q = query(testimonialsCol, orderBy("createdAt", "desc"));
+        const snap = await getDocs(q);
+        snap.forEach(doc => {
+          const data = doc.data();
+          const div = document.createElement("div");
+          div.className = "testimonial";
+          const date = data.createdAt?.toDate().toLocaleDateString() || "";
+          div.innerHTML = `
+            <p><strong>${data.name}</strong> (${data.email})</p>
+            <p>"${data.testimonial}"</p>
+            <p class="date">${date}</p>
+          `;
+          container.append(div);
+        });
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = "<p>Unable to load testimonials.</p>";
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", loadTestimonials);
+  </script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background: #f4f4f4; color: #333; padding-bottom: 50px; }
+    nav { display: flex; justify-content: center; background: #3a3a3a; padding: 10px; position: sticky; top: 0; z-index: 10; }
+    nav a { color: #fff; margin: 0 10px; padding: 8px 16px; text-decoration: none; border-radius: 4px; transition: background 0.3s; }
+    nav a:hover { background: #4CAF50; }
+    header { background: linear-gradient(to right, #4CAF50, #2e7d32); color: white; text-align: center; padding: 40px 20px; }
+    .container { max-width: 800px; margin: 30px auto; }
+    .testimonial-form { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 30px; }
+    .testimonial-form h2 { color: #2e7d32; margin-bottom: 15px; text-align: center; }
+    .testimonial-form textarea, .testimonial-form input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 6px; }
+    .testimonial-form button { background: #4CAF50; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
+    .testimonial-form button:hover { background: #388e3c; }
+    .testimonial { background: #fff; padding: 15px; margin-bottom: 15px; border-radius: 6px; box-shadow: 0 1px 6px rgba(0,0,0,0.1); }
+    .testimonial p { margin-bottom: 8px; }
+    .testimonial .date { font-size: 0.9em; color: #777; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="#">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <header>
+    <h1>Submit &amp; View Testimonials</h1>
+  </header>
+
+  <div class="container">
+    <section class="testimonial-form">
+      <h2>Share Your Experience</h2>
+      <form id="testimonialForm" onsubmit="submitTestimonial(event)">
+        <textarea id="testimonial" rows="4" placeholder="What did you enjoy about your stay?" required></textarea>
+        <input id="name" type="text" placeholder="Your Name" required>
+        <input id="email" type="email" placeholder="Your Email" required>
+        <button type="submit">Submit Testimonial</button>
+      </form>
+    </section>
+
+    <section id="testimonialsContainer" class="container">
+      <!-- Loaded testimonials will appear here -->
+    </section>
+  </div>
+</body>
+</html>
