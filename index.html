@@ -10,7 +10,8 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Poppins', sans-serif; background-color: #f4f4f4; color: #333; scroll-behavior: smooth; }
     header { background: linear-gradient(to right, #4CAF50, #2e7d32); color: white; padding: 40px 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-    nav { display: flex;
+    nav {
+    display: flex;
     justify-content: center;
     flex-direction: row; /* Add this line */
     flex-wrap: wrap;     /* Optional: allow wrapping on small screens */
@@ -18,10 +19,17 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
-    z-index: 1000; }
-    nav a { color: white; padding: 16px 24px; text-decoration: none; font-weight: 500; transition: background 0.3s ease; }
+    z-index: 1000;
+    }
+    nav a {
+    color: white;
+    padding: 16px 24px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease;
+    }
     nav a:hover { background-color: #4CAF50; }
-    .hero { background-image: url('ump_building.jpg'); background-size: cover; background-position: center; height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; color: white; }
+    .hero { background-image: url('images/ump_building.jpg'); background-size: cover; background-position: center; height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; color: white; }
     .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1; }
     .hero-content { position: relative; z-index: 2; animation: fadeInDown 2s ease; }
     .hero-content h1 { font-size: 3rem; margin-bottom: 10px; }
@@ -90,14 +98,16 @@
       .gallery-item { max-width: 90%; }
       .booking-form .form-group { max-width: 90%; }
     }
-
     @media (max-width: 480px) {
-      .hero-content h1 { font-size: 1.5rem; }
-      .btn, .booking-form button { padding: 10px 20px; font-size: 0.9rem; }
-      nav { flex-direction: column; }
-      nav a { width: 100%; text-align: center; }
-      .floating-book-button { padding: 12px 20px; font-size: 14px; right: 20px; bottom: 20px; }
+    .hero-content h1 { font-size: 1.5rem; }
+    .btn, .booking-form button { padding: 10px 20px; font-size: 0.9rem; }
+    .floating-book-button {
+    padding: 12px 20px;
+    font-size: 14px;
+    right: 20px;
+    bottom: 20px;  
     }
+  }
   </style>
 </head>
 <body>
@@ -148,15 +158,15 @@
   <section id="gallery" class="gallery">
     <h2>Explore Our Guesthouse</h2>
     <div class="gallery-item">
-      <img src="img1.jpg" alt="Cozy Room" />
+      <img src="images/img1.jpg" alt="Cozy Room" />
       <p class="caption">Our cozy rooms with a homely feel.</p>
     </div>
     <div class="gallery-item">
-      <img src="img2.jpg" alt="Guesthouse View" />
+      <img src="images/img2.jpg" alt="Guesthouse View" />
       <p class="caption">Enjoy breathtaking views from our guesthouse.</p>
     </div>
     <div class="gallery-item">
-      <img src="img3.jpg" alt="Common Area" />
+      <img src="images/img3.jpg" alt="Common Area" />
       <p class="caption">Relax in our common areas.</p>
     </div>
   </section>
