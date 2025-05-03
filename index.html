@@ -35,7 +35,7 @@
     nav a:hover { background-color: #4CAF50; transform: scale(1.05); }
     nav a i { margin-right: 8px; }
 
-    .hero { background-image: url('ump_building.jpg'); background-size: cover; background-position: center; height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; color: white; }
+    .hero { background-image: url('images/ump_building.jpg'); background-size: cover; background-position: center; height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; color: white; }
     .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1; }
     .hero-content { position: relative; z-index: 2; animation: fadeInDown 2s ease; }
     .hero-content h1 { font-size: 3rem; margin-bottom: 10px; }
@@ -90,8 +90,15 @@
     }
     .content {
       padding: 40px 20px;
+    }
+
+    .content h2, .content .btn {
       text-align: center;
     }
+    .content p {
+    max-width: 700px;
+    margin: auto;
+  }
     /* Responsive Enhancements */
     @media (max-width: 1024px) {
       .hero { height: 400px; }
@@ -104,8 +111,8 @@
       .hero-content p { font-size: 1rem; }
       nav a { padding: 10px 12px; font-size: 0.9rem; }
       .content, .rooms, .gallery, .testimonial-section, .booking-form, .contact-info {
-        padding: 40px 10px;
-      }
+      padding: 40px 20px; /* Was too narrow */
+      text-align: left;   /* Fix alignment */      }
       .gallery-item { max-width: 90%; }
       .booking-form .form-group { max-width: 90%; }
     }
@@ -118,7 +125,7 @@
         right: 20px;
         bottom: 20px;  
       }
-    }    
+    }
   </style>
 </head>
 <body>
@@ -169,15 +176,15 @@
   <section id="gallery" class="gallery">
     <h2>Explore Our Guesthouse</h2>
     <div class="gallery-item">
-      <img src="img1.jpg" alt="Cozy Room" />
+      <img src="images/img1.jpg" alt="Cozy Room" />
       <p class="caption">Our cozy rooms with a homely feel.</p>
     </div>
     <div class="gallery-item">
-      <img src="img4.jpg" alt="Guesthouse View" />
+      <img src="images/img2.jpg" alt="Guesthouse View" />
       <p class="caption">Enjoy breathtaking views from our guesthouse.</p>
     </div>
     <div class="gallery-item">
-      <img src="img3.jpg" alt="Common Area" />
+      <img src="images/img3.jpg" alt="Common Area" />
       <p class="caption">Relax in our common areas.</p>
     </div>
   </section>
@@ -206,7 +213,7 @@
       <button type="submit">Submit Booking</button>
     </form>
     <p id="formResponse" style="margin-top: 20px; color: green;"></p>
-  </section> 
+  </section>
   <section class="content" id="contact">
     <h2>Contact Us</h2>
     <p>Have questions or need more details? Reach out!</p>
@@ -214,7 +221,8 @@
     <p><strong>Email:</strong> <a href="mailto:umpohliewguesthouse@gmail.com">umpohliewguesthouse@gmail.com</a></p>
     <p><strong>Address:</strong> Main Road, Sohra, Meghalaya - 793108</p>
     <p><strong>Location:</strong> <a href="https://g.page/r/CXPt3faHqSUKEBE/review" target="_blank">View on Google Maps</a></p>
-  </section>  <footer>
+  </section>
+  <footer>
     <p>&copy; 2025 Umpohliew Guesthouse. All rights reserved.</p>
   </footer>
 
