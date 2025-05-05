@@ -394,15 +394,15 @@ bookButtons.forEach(button => {
       }, 4000);
   
       form.reset();
+             // check -out check-in validation
+        const checkin = new Date(form.checkin.value);
+    const checkout = new Date(form.checkout.value);
+    
+    if (checkout <= checkin) {
+      alert("Check-out must be after check-in.");
+      return;
+    }
     });
-    // check -out check-in validation
-    const checkin = new Date(form.checkin.value);
-const checkout = new Date(form.checkout.value);
-
-if (checkout <= checkin) {
-  alert("Check-out must be after check-in.");
-  return;
-}
   </script>
   <!-- close-button -->
   <script>
