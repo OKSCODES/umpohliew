@@ -112,115 +112,103 @@
     transform: scale(1.05);
   }
   .modal {
-  display: none;
   position: fixed;
-  z-index: 2000;
-  left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.6);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
 }
+
 .modal.show {
-  display: block;
-  opacity: 1;
+  display: flex;
 }
 .modal-content {
-  background-color: #fff;
-  margin: 5% auto;
-  padding: 40px 30px;
-  border-radius: 16px;
+  background-color: white;
+  border-radius: 12px;
   width: 90%;
   max-width: 500px;
-  position: relative;
-
   max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative; /* ✅ Add this line */
+  padding-top: 40px;   /* ✅ Optional: ensures button isn't overlapped */
+}
+.modal-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.modal-body {
+  padding: 20px;
   overflow-y: auto;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-  animation: slideDown 0.4s ease-out;
+  flex: 1;
 }
 
-.modal-content h2 {
-  font-size: 1.8rem;
-  color: #2e7d32;
-  margin-bottom: 20px;
-}
-
-.modal-content form {
-  width: 100%;
+.modal-body form {
   display: flex;
   flex-direction: column;
 }
 
-.modal-content form input,
-.modal-content form button {
-  width: 100%;
-  padding: 14px 18px;
-  margin-bottom: 16px;
-  border-radius: 12px;
-  border: 1px solid #ccc;
+.modal-body input,
+.modal-body button {
+  padding: 10px;
+  margin-bottom: 12px;
   font-size: 1rem;
-  transition: 0.3s ease;
-  font-family: 'Poppins', sans-serif;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-.modal-content form input:focus {
-  border-color: #4CAF50;
-  box-shadow: 0 0 6px rgba(76, 175, 80, 0.5);
-  outline: none;
-}
-
-.modal-content form button {
+.modal-body button {
   background-color: #4CAF50;
   color: white;
   font-weight: bold;
   border: none;
-  border-radius: 25px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s ease;
 }
 
-.modal-content form button:hover {
+.modal-body button:hover {
   background-color: #388e3c;
-  transform: scale(1.03);
 }
-
 .close-btn {
   position: absolute;
   top: 10px;
-  right: 15px;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #333;
-  background: none;
-  border: none;
+  right: 16px;
+  font-size: 24px;
   cursor: pointer;
-  z-index: 10;
+  color: #555;
+  z-index: 10; /* added */
 }
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-40px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-@media (max-width: 600px) {
+@media (max-height: 600px) {
   .modal-content {
-    padding: 20px;
     max-height: 95vh;
   }
 }
+.modal-content {
+  animation: fadeInUp 0.3s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .success-popup {
   position: fixed;
   top: 20px;
@@ -329,25 +317,30 @@
     <p><strong>Address:</strong> Main Road, Sohra, Meghalaya - 793108</p>
     <p><strong>Location:</strong> <a href="https://g.page/r/CXPt3faHqSUKEBE/review" target="_blank">View on Google Maps</a></p>
   </section>
-  <div id="booking-modal" class="modal">
+  <div class="modal" id="booking-modal">
     <div class="modal-content">
-      <span class="close-btn">&times;</span>
-      <img id="modal-image" src="" alt="Selected Room" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
-      <p id="modal-caption" style="font-style: italic; color: #555; margin-bottom: 5px;"></p>
-      <p id="modal-price" style="font-weight: bold; color: #2e7d32; margin-bottom: 20px;"></p>
-      <h2>Book Your Stay</h2>
-      <form action="#" method="POST">
-        <input type="text" name="name" placeholder="Full Name" required><br>
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="tel" name="phone" placeholder="Phone Number" required><br>
-        <input type="date" name="checkin" required><br>
-        <input type="date" name="checkout" required><br>
-        <input type="number" name="guests" placeholder="Number of Guests" required><br>
-        <button type="submit">Submit</button>
-      </form>
+      <span class="close-btn">&times;</span> <!-- ✅ moved here -->
+      <div class="modal-image">
+        <!-- <img src="your-image.jpg" alt="Room photo" /> -->
+      </div>
+      <div class="modal-body">
+        <img id="modal-image" src="" alt="Selected Room" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
+        <p id="modal-caption" style="font-style: italic; color: #555; margin-bottom: 5px;"></p>
+        <p id="modal-price" style="font-weight: bold; color: #2e7d32; margin-bottom: 20px;"></p>
+        <h2>Book Your Stay</h2>
+        <form action="#" method="POST">
+          <input type="text" name="name" placeholder="Full Name" required><br>
+          <input type="email" name="email" placeholder="Email" required><br>
+          <input type="tel" name="phone" placeholder="Phone Number" required><br>
+          <input type="date" name="checkin" required><br>
+          <input type="date" name="checkout" required><br>
+          <input type="number" name="guests" placeholder="Number of Guests" required><br>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
-  <!-- pop up message from top -->
+    <!-- pop up message from top -->
   <audio id="successSound" src="success.mp3" preload="auto"></audio>
   <div id="successPopup" class="success-popup"></div>  
   <script>
@@ -365,21 +358,12 @@ bookButtons.forEach(button => {
     const price = button.getAttribute('data-price');
 
     modalImage.src = imgSrc;
+    modalImage.alt = caption; // ✅ Added this line
     modalCaption.textContent = caption;
     modalPrice.textContent = price;
 
     modal.classList.add('show');
   });
-});
-
-closeBtn.addEventListener('click', () => {
-  modal.classList.remove('show');
-});
-
-window.addEventListener('click', (e) => {
-  if (e.target == modal) {
-    modal.classList.remove('show');
-  }
 });
   </script>
   <!-- pop-down-messeage -->
@@ -410,6 +394,20 @@ window.addEventListener('click', (e) => {
       }, 4000);
   
       form.reset();
+    });
+    // check -out check-in validation
+    const checkin = new Date(form.checkin.value);
+const checkout = new Date(form.checkout.value);
+
+if (checkout <= checkin) {
+  alert("Check-out must be after check-in.");
+  return;
+}
+  </script>
+  <!-- close-button -->
+  <script>
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('show');
     });
   </script>
   </body>
