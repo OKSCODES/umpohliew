@@ -15,7 +15,7 @@
     nav a:hover { background-color: #4CAF50; }
 
     .hero {
-      background-image: url('ump_building.jpg');
+      background-image: url('images/ump_building.jpg');
       background-size: cover;
       background-position: center;
       height: 400px;
@@ -208,7 +208,6 @@
     transform: translateY(0);
   }
 }
-
 .success-popup {
   position: fixed;
   top: 20px;
@@ -218,7 +217,7 @@
   color: white;
   padding: 16px 28px;
   border-radius: 16px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   font-weight: 600;
   z-index: 3000;
   opacity: 0;
@@ -255,57 +254,62 @@
   </section>
   <div class="custom-room">
     <div class="image-wrapper">
-      <img src="img1.jpg" alt="Common Area">
+      <img src="images/img1.jpg" alt="Common Area">
       <div class="price-overlay">₹2,000 per night</div>
     </div>
     <div class="caption-text">Relax in our common areas.</div>
     <button 
     class="book-btn" 
-    data-img="img1.jpg" 
-    data-caption="Relax in our common areas." 
-    data-price="₹2,000 per night">
+    data-img="images/img1.jpg" 
+    data-caption="Relax in our common areas. Capacity: 2 Guests" 
+    data-price="₹2,000 per night" 
+    data-capacity="2 Guests"> <!-- Added capacity -->
     Book Now
   </button>
   </div>
   <div class="custom-room">
     <div class="image-wrapper">
-      <img src="img1.jpg" alt="Common Area">
+      <img src="images/img1.jpg" alt="Common Area">
       <div class="price-overlay">₹1,000 per night</div>
     </div>
     <div class="caption-text">Relax in our common areas.</div>
     <button 
     class="book-btn" 
-    data-img="img1.jpg" 
-    data-caption="Relax in our common areas." 
-    data-price="₹1,000 per night">
+    data-img="images/img1.jpg" 
+    data-caption="Relax in our common areas. Capacity: 2 Guests" 
+    data-price="₹2,000 per night" 
+    data-capacity="2 Guests"> <!-- Added capacity -->
     Book Now
   </button>
   </div>
   <div class="custom-room">
     <div class="image-wrapper">
-      <img src="img1.jpg" alt="Common Area">
+      <img src="images/img1.jpg" alt="Common Area">
       <div class="price-overlay">₹1,500 per night</div>
     </div>
     <div class="caption-text">Relax in our common areas.</div>
     <button 
-  class="book-btn" 
-  data-img="img1.jpg" 
-  data-caption="Relax in our common areas." 
-  data-price="₹1,500 per night">
-  Book Now
-</button>
+    class="book-btn" 
+    data-img="images/img1.jpg" 
+    data-caption="Relax in our common areas. Capacity: 2 Guests" 
+    data-price="₹2,000 per night" 
+    data-capacity="2 Guests"> <!-- Added capacity -->
+    Book Now
+  </button>
   </div>
   <div class="custom-room">
     <div class="image-wrapper">
-      <img src="img1.jpg" alt="Common Area">
+      <img src="images/img1.jpg" alt="Common Area">
       <div class="price-overlay">₹1,200 per night</div>
     </div>
     <div class="caption-text">Relax in our common areas.</div>
-    <button 
+<!-- Room 2 -->
+  <button 
     class="book-btn" 
-    data-img="img1.jpg" 
-    data-caption="Relax in our common areas." 
-    data-price="₹1,200 per night">
+    data-img="images/img2.jpg" 
+    data-caption="Enjoy the cozy room with balcony. Capacity: 4 Guests" 
+    data-price="₹1,000 per night" 
+    data-capacity="4 Guests">
     Book Now
   </button>
   </div>    
@@ -327,6 +331,7 @@
         <img id="modal-image" src="" alt="Selected Room" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
         <p id="modal-caption" style="font-style: italic; color: #555; margin-bottom: 5px;"></p>
         <p id="modal-price" style="font-weight: bold; color: #2e7d32; margin-bottom: 20px;"></p>
+        <p id="modal-capacity" style="font-weight: 600; color: #444; margin-bottom: 20px;"></p> <!-- Capacity placeholder -->
         <h2>Book Your Stay</h2>
         <form action="#" method="POST">
           <input type="text" name="name" placeholder="Full Name" required><br>
@@ -337,72 +342,86 @@
           <input type="number" name="guests" placeholder="Number of Guests" required><br>
           <button type="submit">Submit</button>
         </form>
-      </div>
-    </div>
-  </div>
-    <!-- pop up message from top -->
+      </div>  
+    </div>            
+  </div>  
+  
+  
+  <!-- pop up message from top -->
   <audio id="successSound" src="success.mp3" preload="auto"></audio>
   <div id="successPopup" class="success-popup"></div>  
-  <script>
-const bookButtons = document.querySelectorAll('.book-btn');
-const modal = document.getElementById('booking-modal');
-const modalImage = document.getElementById('modal-image');
-const modalCaption = document.getElementById('modal-caption');
-const modalPrice = document.getElementById('modal-price');
-const closeBtn = document.querySelector('.close-btn');
 
-bookButtons.forEach(button => {
-  button.addEventListener('click', () => {
+
+  
+  <script>
+    const bookButtons = document.querySelectorAll('.book-btn');
+    const modal = document.getElementById('booking-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalCaption = document.getElementById('modal-caption');
+    const modalPrice = document.getElementById('modal-price');
+    const modalCapacity = document.getElementById('modal-capacity');  // Add this to target the capacity element
+    const closeBtn = document.querySelector('.close-btn');
+
+    bookButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        console.log("Book Now button clicked!");  // Add this for debugging
     const imgSrc = button.getAttribute('data-img');
     const caption = button.getAttribute('data-caption');
     const price = button.getAttribute('data-price');
+    const capacity = button.getAttribute('data-capacity'); // Get capacity value
+
+    // Log values for debugging
+    console.log(imgSrc, caption, price, capacity);
 
     modalImage.src = imgSrc;
-    modalImage.alt = caption; // ✅ Added this line
+    modalImage.alt = caption;
     modalCaption.textContent = caption;
     modalPrice.textContent = price;
+    modalCapacity.textContent = `Capacity: ${capacity}`; // Update the capacity text in the modal
 
-    modal.classList.add('show');
+    modal.classList.add('show');  // Make sure 'show' class is added
   });
 });
-  </script>
-  <!-- pop-down-messeage -->
-  <script>
-    const form = document.querySelector('form');
-    const successPopup = document.getElementById('successPopup');
-    const successSound = document.getElementById('successSound');
   
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-  
-      const name = form.elements["name"].value.trim();
-      successPopup.textContent = `🎉 Thank you, ${name || 'guest'}! Your booking has been received.`;
-  
-      successPopup.classList.add('show');
-      modal.classList.remove('show');
-  
-      // Play the sound
-      successSound.play();
-  
-      // Hide popup after 3s and redirect after 4s
-      setTimeout(() => {
-        successPopup.classList.remove('show');
-      }, 3000);
-  
-      setTimeout(() => {
-        window.location.href = "index.html"; // Change to your desired page
-      }, 4000);
-  
-      form.reset();
-             // check -out check-in validation
-        const checkin = new Date(form.checkin.value);
-    const checkout = new Date(form.checkout.value);
-    
-    if (checkout <= checkin) {
-      alert("Check-out must be after check-in.");
-      return;
-    }
-    });
+const form = document.querySelector('form');
+const successPopup = document.getElementById('successPopup');
+const successSound = document.getElementById('successSound');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const checkin = new Date(form.checkin.value);
+  const checkout = new Date(form.checkout.value);
+
+  if (checkout <= checkin) {
+    alert("Check-out must be after check-in.");
+    return;
+  }
+
+  const name = form.elements["name"].value.trim();
+  successPopup.textContent = `🎉 Thank you, ${name || 'guest'}! Your booking has been received.`;
+
+  // Ensure success popup is shown
+  successPopup.classList.add('show');
+
+  // Hide the modal
+  modal.classList.remove('show');
+
+  // Play the success sound
+  successSound.play();
+
+  // Hide popup after 3 seconds
+  setTimeout(() => {
+    successPopup.classList.remove('show');
+  }, 3000);
+
+  // Redirect after 4 seconds
+  setTimeout(() => {
+    window.location.href = "index.html"; // Change to your desired page
+  }, 4000);
+
+  form.reset();
+});
   </script>
   <!-- close-button -->
   <script>
